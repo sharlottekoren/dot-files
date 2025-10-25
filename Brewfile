@@ -21,6 +21,9 @@ brew "golangci-lint"
 brew "pre-commit"
 brew "tree"
 
+# --- Fonts ---
+cask "font-jetbrains-mono"
+
 # --- Zsh Plugins ---
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
@@ -31,8 +34,5 @@ cask "iterm2"            # better terminal
 cask "rectangle"         # window snapping
 cask "dockdoor"          # better dock control
 cask "visual-studio-code"
-cask "raycast"           # command launcher
 cask "google-chrome"
-cask "notion"
-cask "docker"            # Docker Desktop (free for personal)
 brew "meetingbar"        # shows upcoming meetings in menu bar
