@@ -54,6 +54,29 @@ echo "🐹 Setting up Go workspace..."
 mkdir -p "$HOME/go/bin"
 
 # -----------------------------
+# 💻 Set up Zsh as default shell
+# -----------------------------
+if [ "$SHELL" != "/bin/zsh" ]; then
+  echo "🐚 Setting Zsh as default shell..."
+  chsh -s /bin/zsh
+fi
+
+# -----------------------------
+# 🧠 VS Code Setup
+# -----------------------------
+echo "🧠 Setting up Visual Studio Code preferences..."
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+mkdir -p "$VSCODE_USER_DIR"
+cp "$(dirname "$0")/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+
+if command -v code &>/dev/null; then
+  echo "📦 Installing VS Code extensions..."
+  cat "$(dirname "$0")/vscode/extensions.txt" | grep -v '^#' | xargs -L 1 code --install-extension
+else
+  echo "⚠️ VS Code CLI not found — open VS Code once, then run 'code --install-extension' manually."
+fi
+
+# -----------------------------
 # 6️⃣ Finishing Touches
 # -----------------------------
 echo "🎨 Installing Powerlevel10k..."

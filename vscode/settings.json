@@ -1,0 +1,19 @@
+{
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontSize": 13,
+  "explorer.compactFolders": false,
+  "breadcrumbs.enabled": true,
+  "[python]": { "editor.formatOnType": true },
+  "[go]": { "editor.formatOnSave": true },
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "manual",
+  "window.autoDetectColorScheme": false
+}

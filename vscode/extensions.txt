@@ -1,0 +1,13 @@
+# Theme
+catppuccin.catppuccin-vsc
+
+# Languages
+ms-python.python
+ms-python.debugpy
+golang.go
+ms-azuretools.vscode-docker
+
+# Productivity
+esbenp.prettier-vscode
+formulahendry.code-runner
+eamodio.gitlens
