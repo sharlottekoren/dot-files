@@ -72,7 +72,7 @@ This will:
 ### Extensions
 
 * Python and Go language support
-* Prettier, Code Runner, and GitLens for productivity (See (./vscode/extensions.txt) for the full list.)
+* Prettier, Code Runner, and GitLens for productivity (See [`vscode/extensions.txt`](./vscode/extensions.txt) for the full list.)
 
 ## 🧩 Customization
 
