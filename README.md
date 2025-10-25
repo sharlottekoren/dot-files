@@ -1,130 +1,97 @@
-# Dot-Files
+# 🧩 Dot-Files
 
-This repository contains my personal macOS configuration and development environment. It is designed to be portable, so I can quickly set up a new Mac with all my preferred tools, shell configurations, and VS Code settings.
+This is my personal macOS development environment setup.
 
-## 🚀 Installation
+This repo automates setting up your terminal, shell, languages, and VS Code environment in one go.
 
-1.  Clone this repository to your local machine.
-2.  Run the main setup script:
-    ```./setup.sh```
+## 🚀 Features
 
-The script is automated and will perform the following steps:
-*   Install Homebrew if it is not already present.
-*   Install Oh My Zsh if it is not already present.   
-*   Back up any existing `~/.zshrc` file and create a symlink to the `.zshrc` file in this repository.
-*   Set up the Python environment by installing Python 3.12.6 with `pyenv` and setting it as the global default.
-*   Create a `~/go/bin` directory for Go binaries.
-*   Set Zsh as the default login shell.
-*   Configure Visual Studio Code by copying the `settings.json` file and installing all extensions listed in `extensions.txt`.
-    
-After the script finishes, restart your terminal or run `exec zsh` to apply all changes.
+* Zsh + Powerlevel10k — beautiful, fast, and functional shell prompt.
+* Oh My Zsh plugins — `git`, `zsh-autosuggestions`, and `zsh-syntax-highlighting`.
+* VS Code setup — automatically installs extensions and applies a custom theme/config.
+* Language support — Python (via `pyenv`) and Go, with ready-made shortcuts and aliases.
+* Homebrew automation — installs all dependencies from the Brewfile.
 
-## 💻 What's Included?
+## 🧰 What’s Included
+| *File*                                               | *Description*                                                              |
+| -------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`setup.sh`](./setup.sh)                           | Main setup script to install everything automatically.                   |
+| [`Brewfile`](./Brewfile)                           | Homebrew bundle list for macOS apps and CLI tools.                       |
+| [`.zshrc`](./.zshrc)                               | Customized Zsh configuration (Powerlevel10k, aliases, language setup).   |
+| [`vscode/settings.json`](./vscode/settings.json)   | Preconfigured VS Code settings (Catppuccin theme, JetBrains Mono, etc.). |
+| [`vscode/extensions.txt`](./vscode/extensions.txt) | List of VS Code extensions to be auto-installed.                         |
 
-### 🐚 Shell: Zsh & Oh My Zsh
+## 🪄 Installation
 
-*   **Theme:** Powerlevel10k.
-    
-*   **Plugins:**
-    
-    *   git
-        
-    *   zsh-autosuggestions
-        
-    *   zsh-syntax-highlighting
-        
-*   **Settings:**
-    
-    *   Command auto-correction (ENABLE\_CORRECTION=true).
-        
-    *   Hyphen insensitivity (HYPHEN\_INSENSITIVE=true).
-        
-*   **Locale:**
-    
-    *   export LANG=en\_US.UTF-8
-        
-    *   export LC\_ALL=en\_US.UTF-8
-        
+1. Clone the repository
+```bash
+git clone https://github.com/<your-username>/Dot-Files.git ~/Dot-Files
+cd ~/Dot-Files
+```
 
-### 📦 Homebrew Packages
+2. Run the setup script
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
-The Brewfile installs a wide range of tools:
+This will:
+*Install Homebrew (if missing)
 
-*   **Core CLI Tools:**
-    
-    *   git
-        
-    *   zsh
-        
-    *   fzf
-        
-    *   gh (GitHub CLI)
-        
-    *   wget
-        
-    *   htop
-        
-    *   jq (JSON parser)
-        
-*   **Developer Tools:**
-    
-    *   nvm
-        
-    *   go
-        
-    *   python
-        
-    *   pyenv
-        
-    *   pyenv-virtualenv
-        
-    *   golangci-lint
-        
-    *   pre-commit
-        
-    *   tree
-        
-*   **GUI Applications:**
-    
-    *   iterm2 (Terminal replacement)
-        
-    *   rectangle (Window snapping)
-        
-    *   dockdoor (Dock control)
-        
-    *   visual-studio-code
-        
-    *   google-chrome
-        
-    *   meetingbar (Menu bar meeting viewer)
-        
-*   **Fonts:**
-    
-    *   font-jetbrains-mono
-        
+* Install all packages from the `Brewfile`
+* Install Oh My Zsh and Powerlevel10k
+* Set up the `.zshrc`
+* Configure Python (via `pyenv`) and Go
+* Set up VS Code settings and extensions
 
-### 🧠 Visual Studio Code
+## ⚙️ Zsh Features
 
-Configuration is managed via settings.json and the extensions.txt list.
+* *Theme*: Powerlevel10k
+* *Plugins*: `git`, `zsh-autosuggestions`, `zsh-syntax-highlighting`
 
-*   **Theme:** Catppuccin Mocha theme and icons.
-    
-*   **Font:** JetBrains Mono is set for both the editor and the integrated terminal.
-    
-*   **Key Settings:**
-    
-    *   editor.formatOnSave: true
-        
-    *   files.autoSave: "onFocusChange"
-        
-    *   editor.tabSize: 2
-        
-    *   telemetry.telemetryLevel: "off" (Telemetry disabled)
-        
-*   **Extensions:**
-    
-    *   **Theme:** catppuccin.catppuccin-vsc
-        
-    *   **Languages:** ms-python.python, ms-python.debugpy, golang.go, ms-azuretools.vscode-docker
-        
-    *   **Productivity:** esbenp.prettier-vscode, formulahendry.code-runner, eamodio.gitlens
+Aliases:
+
+```bash
+cls          → clear
+ll           → ls -lh
+la           → ls -lha
+zshconfig    → code ~/.zshrc
+reloadzsh    → source ~/.zshrc
+venv         → create and activate Python venv
+pipup        → upgrade pip, setuptools, wheel
+gorun        → go run .
+gobuild      → go build
+gotest       → go test ./...
+```
+
+## 🧠 VS Code Configuration
+
+### Theme & Appearance
+
+* Color theme: Catppuccin Mocha
+* Font: JetBrains Mono
+* Auto-save on focus change
+
+### Extensions
+
+* Python & Go language support
+* Prettier, Code Runner, and GitLens for productivity (See ./vscode/extensions.txt for the full list.)
+
+## 🧩 Customization
+
+* Modify .zshrc and run reloadzsh to apply changes.
+* To reconfigure Powerlevel10k:
+```bash
+p10k configure
+```
+* To add apps, edit the `Brewfile` and rerun:
+```bash
+brew bundle --file=~/Dot-Files/Brewfile
+```
+
+## 🧩 Example Startup Message
+
+When you launch a new terminal session:
+```css
+Welcome, <your-username>! ☀️ Ready to build something awesome.
+```
