@@ -87,3 +87,8 @@ alias gotest="go test ./..."
 # Run `p10k configure` to customize Powerlevel10k.
 # MeetingBar can be launched from Raycast or macOS Login Items.
 # Keep this file synced via GitHub dotfiles repo.
+
+# -----------------------------
+# ☕️ Startup Message
+# -----------------------------
+echo "Welcome, $(whoami)! ☀️ Ready to build something awesome."
