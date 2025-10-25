@@ -47,7 +47,7 @@ This will:
 
 * **Theme**: Powerlevel10k
 * **Plugins**: `git`, `zsh-autosuggestions`, `zsh-syntax-highlighting`
-* Aliases:
+* **Aliases**:
     ```bash
     cls          → clear
     ll           → ls -lh
@@ -71,12 +71,12 @@ This will:
 
 ### Extensions
 
-* Python & Go language support
-* Prettier, Code Runner, and GitLens for productivity (See ./vscode/extensions.txt for the full list.)
+* Python and Go language support
+* Prettier, Code Runner, and GitLens for productivity (See (./vscode/extensions.txt) for the full list.)
 
 ## 🧩 Customization
 
-* Modify .zshrc and run reloadzsh to apply changes.
+* Modify `.zshrc` and run `reloadzsh` to apply changes.
 * To reconfigure Powerlevel10k:
 ```bash
 p10k configure
