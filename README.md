@@ -6,14 +6,14 @@ This repo automates setting up your terminal, shell, languages, and VS Code envi
 
 ## 🚀 Features
 
-* Zsh + Powerlevel10k — beautiful, fast, and functional shell prompt.
-* Oh My Zsh plugins — `git`, `zsh-autosuggestions`, and `zsh-syntax-highlighting`.
-* VS Code setup — automatically installs extensions and applies a custom theme/config.
-* Language support — Python (via `pyenv`) and Go, with ready-made shortcuts and aliases.
-* Homebrew automation — installs all dependencies from the Brewfile.
+* **Zsh + Powerlevel10k** — beautiful, fast, and functional shell prompt.
+* **Oh My Zsh plugins** — `git`, `zsh-autosuggestions`, and `zsh-syntax-highlighting`.
+* **VS Code setup** — automatically installs extensions and applies a custom theme/config.
+* **Language support** — Python (via `pyenv`) and Go, with ready-made shortcuts and aliases.
+* **Homebrew automation** — installs all dependencies from the Brewfile.
 
 ## 🧰 What’s Included
-| *File*                                               | *Description*                                                              |
+| **File**                                             | **Description**                                                              |
 | -------------------------------------------------- | ------------------------------------------------------------------------ |
 | [`setup.sh`](./setup.sh)                           | Main setup script to install everything automatically.                   |
 | [`Brewfile`](./Brewfile)                           | Homebrew bundle list for macOS apps and CLI tools.                       |
@@ -36,8 +36,7 @@ chmod +x setup.sh
 ```
 
 This will:
-*Install Homebrew (if missing)
-
+* Install Homebrew (if missing)
 * Install all packages from the `Brewfile`
 * Install Oh My Zsh and Powerlevel10k
 * Set up the `.zshrc`
@@ -46,31 +45,29 @@ This will:
 
 ## ⚙️ Zsh Features
 
-* *Theme*: Powerlevel10k
-* *Plugins*: `git`, `zsh-autosuggestions`, `zsh-syntax-highlighting`
-
-Aliases:
-
-```bash
-cls          → clear
-ll           → ls -lh
-la           → ls -lha
-zshconfig    → code ~/.zshrc
-reloadzsh    → source ~/.zshrc
-venv         → create and activate Python venv
-pipup        → upgrade pip, setuptools, wheel
-gorun        → go run .
-gobuild      → go build
-gotest       → go test ./...
-```
+* **Theme**: Powerlevel10k
+* **Plugins**: `git`, `zsh-autosuggestions`, `zsh-syntax-highlighting`
+* Aliases:
+    ```bash
+    cls          → clear
+    ll           → ls -lh
+    la           → ls -lha
+    zshconfig    → code ~/.zshrc
+    reloadzsh    → source ~/.zshrc
+    venv         → create and activate Python venv
+    pipup        → upgrade pip, setuptools, wheel
+    gorun        → go run .
+    gobuild      → go build
+    gotest       → go test ./...
+    ```
 
 ## 🧠 VS Code Configuration
 
 ### Theme & Appearance
 
-* Color theme: Catppuccin Mocha
-* Font: JetBrains Mono
-* Auto-save on focus change
+* **Colour theme**: Catppuccin Mocha
+* **Font**: JetBrains Mono
+* **Auto-save on focus change**
 
 ### Extensions
 
