@@ -1,3 +1,10 @@
+# ---------------------------------
+# ⚡ Powerlevel10k Instant Prompt
+# ---------------------------------
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # -----------------------------
 # 🌟 Personal Zsh Configuration
 # -----------------------------
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Theme configuration (Powerlevel10k)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Plugins — efficient but fast
+# Plugins
 plugins=(
   git
   zsh-autosuggestions
@@ -27,23 +34,27 @@ source $ZSH/oh-my-zsh.sh
 
 ENABLE_CORRECTION="true"
 HYPHEN_INSENSITIVE="true"
+CASE_SENSITIVE="false"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="false"
+# Additional optional OMZ behaviors can be uncommented as needed:
+# DISABLE_AUTO_TITLE="true"
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Locale
+env LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # -----------------------------
 # 🐍 Python Configuration
 # -----------------------------
-
-# Use pyenv for managing Python versions
 if command -v pyenv &>/dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
-# Optional: automatically activate virtualenvs
 if command -v pyenv-virtualenv-init &>/dev/null; then
   eval "$(pyenv virtualenv-init -)"
 fi
@@ -51,8 +62,6 @@ fi
 # -----------------------------
 # 🐹 Go Configuration
 # -----------------------------
-
-# Set up Go paths
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
@@ -77,21 +86,16 @@ alias gobuild="go build"
 alias gotest="go test ./..."
 
 # -----------------------------
-# 🧰 Optional Paths
-# -----------------------------
-# export EDITOR="code"
-
-# -----------------------------
 # ✨ Notes
 # -----------------------------
 # Run `p10k configure` to customize Powerlevel10k.
-# MeetingBar can be launched from Raycast or macOS Login Items.
 # Keep this file synced via GitHub dotfiles repo.
 
 # -----------------------------
 # ☕️ Startup Message
 # -----------------------------
 echo "Welcome, $(whoami)! ☀️ Ready to build something awesome."
+
 
 # Homebrew (macOS + Linux)
 if [[ -x /opt/homebrew/bin/brew ]]; then
