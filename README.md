@@ -25,7 +25,7 @@ This repo automates setting up your terminal, shell, languages, and VS Code envi
 
 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/Dot-Files.git ~/Dot-Files
+git clone https://github.com/sharlottekoren/Dot-Files.git ~/Dot-Files
 cd ~/Dot-Files
 ```
 
