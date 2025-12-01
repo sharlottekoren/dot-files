@@ -23,7 +23,7 @@ source $ZSH/oh-my-zsh.sh
 
 # -----------------------------
 # 🧠 Quality-of-Life Settings
-# -----------------------------Æ
+# -----------------------------
 
 ENABLE_CORRECTION="true"
 HYPHEN_INSENSITIVE="true"
