@@ -5,6 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Homebrew (macOS + Linux) - must be early for PATH
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  # macOS (Apple Silicon)
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  # macOS (Intel)
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  # Linuxbrew (Linux / WSL)
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # -----------------------------
 # 🌟 Personal Zsh Configuration
 # -----------------------------
@@ -30,6 +42,9 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # Load Powerlevel10k configuration if present
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Suppress instant prompt warning (output is now after prompt setup)
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # -----------------------------
 # 🧠 Quality-of-Life Settings
@@ -94,19 +109,6 @@ alias gotest="go test ./..."
 # Keep this file synced via GitHub dotfiles repo.
 
 # -----------------------------
-# ☕️ Startup Message
+# ☕️ Startup Message (after prompt setup)
 # -----------------------------
 echo "Welcome, $(whoami)! ☀️ Ready to build something awesome."
-
-
-# Homebrew (macOS + Linux)
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  # macOS (Apple Silicon)
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -x /usr/local/bin/brew ]]; then
-  # macOS (Intel)
-  eval "$(/usr/local/bin/brew shellenv)"
-elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-  # Linuxbrew (Linux / WSL)
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
