@@ -35,4 +35,3 @@ cask "rectangle"         # window snapping
 cask "dockdoor"          # better dock control
 cask "visual-studio-code"
 cask "google-chrome"
-brew "meetingbar"        # shows upcoming meetings in menu bar
