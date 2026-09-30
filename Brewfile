@@ -27,7 +27,7 @@ cask "font-jetbrains-mono"
 # --- Zsh Plugins ---
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-brew "romkatv/powerlevel10k/powerlevel10k"
+brew "powerlevel10k"
 
 # --- GUI Apps (All Free) ---
 cask "iterm2"            # better terminal
