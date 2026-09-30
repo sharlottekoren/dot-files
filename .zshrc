@@ -45,7 +45,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="false"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Locale
-env LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
