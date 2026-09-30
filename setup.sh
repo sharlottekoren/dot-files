@@ -3,18 +3,25 @@ set -e
 
 echo "🍏 Starting macOS setup..."
 
+# Ensure Homebrew is in PATH
+eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || eval "$(/usr/local/bin/brew shellenv)" 2>/dev/null || true
+
+# Get the correct Homebrew prefix
+HOMEBREW_PREFIX=$(brew --prefix 2>/dev/null || echo "/opt/homebrew")
+
 # -----------------------------
 # 1️⃣ Install Homebrew
 # -----------------------------
 if ! command -v brew &>/dev/null; then
   echo "🍺 Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 else
   echo "✅ Homebrew already installed."
 fi
 
-# Ensure Homebrew is in PATH for this script
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Re-evaluate after potential Homebrew install
+HOMEBREW_PREFIX=$(brew --prefix)
 
 # -----------------------------
 # 2️⃣ Brewfile Installation
@@ -22,15 +29,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "📦 Installing packages from Brewfile..."
 brew bundle --file="$(dirname "$0")/Brewfile"
 
-# Ensure Homebrew is in PATH for this script
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # -----------------------------
 # 3️⃣ Zsh & Oh My Zsh
 # -----------------------------
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "💻 Installing Oh My Zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
   echo "✅ Oh My Zsh already installed."
 fi
@@ -73,11 +77,15 @@ fi
 echo "🧠 Setting up Visual Studio Code preferences..."
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 mkdir -p "$VSCODE_USER_DIR"
-cp "$(dirname "$0")/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+if [ -f "$(dirname "$0")/vscode/settings.json" ]; then
+  cp "$(dirname "$0")/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+fi
 
 if command -v code &>/dev/null; then
   echo "📦 Installing VS Code extensions..."
-  cat "$(dirname "$0")/vscode/extensions.txt" | grep -v '^#' | xargs -L 1 code --install-extension
+  if [ -f "$(dirname "$0")/vscode/extensions.txt" ]; then
+    cat "$(dirname "$0")/vscode/extensions.txt" | grep -v '^#' | xargs -L 1 code --install-extension
+  fi
 else
   echo "⚠️ VS Code CLI not found — open VS Code once, then run 'code --install-extension' manually."
 fi
@@ -87,13 +95,29 @@ fi
 # -----------------------------
 echo "🎨 Setting up Powerlevel10k..."
 
-# Get Homebrew prefix (handles both Apple Silicon and Intel Macs)
-HOMEBREW_PREFIX=$(brew --prefix)
+# The new Homebrew formula puts it in share, not opt
+POWERLEVEL10K_PATH="$HOMEBREW_PREFIX/share/powerlevel10k"
 
-# Link Powerlevel10k into Oh My Zsh custom themes
-mkdir -p "$HOME/.oh-my-zsh/custom/themes"
-ln -sf "$HOMEBREW_PREFIX/opt/powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-echo "✅ Powerlevel10k linked to Oh My Zsh."
+# Check if it's there, otherwise try the old tap location
+if [ ! -d "$POWERLEVEL10K_PATH" ]; then
+  POWERLEVEL10K_PATH="$HOMEBREW_PREFIX/opt/powerlevel10k"
+fi
+
+if [ -d "$POWERLEVEL10K_PATH" ]; then
+  # Create custom themes directory
+  mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+  
+  # Remove any existing symlink
+  if [ -L "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+    rm "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+  fi
+  
+  # Create the correct symlink
+  ln -s "$POWERLEVEL10K_PATH" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+  echo "✅ Powerlevel10k linked to Oh My Zsh at $POWERLEVEL10K_PATH"
+else
+  echo "⚠️ Powerlevel10k not found. Try running: brew install powerlevel10k"
+fi
 
 echo "🗓️ Setting up MeetingBar (menu bar meeting viewer)..."
 if command -v meetingbar &>/dev/null; then
