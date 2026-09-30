@@ -82,6 +82,11 @@ fi
 echo "🎨 Installing Powerlevel10k..."
 brew install romkatv/powerlevel10k/powerlevel10k || true
 
+# Link Powerlevel10k into Oh My Zsh custom themes
+echo "🔗 Linking Powerlevel10k into Oh My Zsh..."
+mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+ln -sf "$(brew --prefix)/opt/powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+
 echo "🗓️ Setting up MeetingBar (menu bar meeting viewer)..."
 if command -v meetingbar &>/dev/null; then
   echo "✅ MeetingBar installed — you can enable it in System Settings → Login Items."
@@ -91,3 +96,6 @@ fi
 
 echo "✨ All done!"
 echo "🔄 Restart your terminal or run 'exec zsh' to apply changes."
+echo ""
+echo "After restarting, run: p10k configure"
+echo "This will launch the Powerlevel10k configuration wizard."
