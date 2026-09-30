@@ -13,11 +13,17 @@ else
   echo "✅ Homebrew already installed."
 fi
 
+# Ensure Homebrew is in PATH for this script
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # -----------------------------
 # 2️⃣ Brewfile Installation
 # -----------------------------
 echo "📦 Installing packages from Brewfile..."
 brew bundle --file="$(dirname "$0")/Brewfile"
+
+# Ensure Homebrew is in PATH for this script
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # -----------------------------
 # 3️⃣ Zsh & Oh My Zsh
@@ -77,15 +83,17 @@ else
 fi
 
 # -----------------------------
-# 6️⃣ Finishing Touches
+# 6️⃣ Powerlevel10k Setup
 # -----------------------------
-echo "🎨 Installing Powerlevel10k..."
-brew install romkatv/powerlevel10k/powerlevel10k || true
+echo "🎨 Setting up Powerlevel10k..."
+
+# Get Homebrew prefix (handles both Apple Silicon and Intel Macs)
+HOMEBREW_PREFIX=$(brew --prefix)
 
 # Link Powerlevel10k into Oh My Zsh custom themes
-echo "🔗 Linking Powerlevel10k into Oh My Zsh..."
 mkdir -p "$HOME/.oh-my-zsh/custom/themes"
-ln -sf "$(brew --prefix)/opt/powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+ln -sf "$HOMEBREW_PREFIX/opt/powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+echo "✅ Powerlevel10k linked to Oh My Zsh."
 
 echo "🗓️ Setting up MeetingBar (menu bar meeting viewer)..."
 if command -v meetingbar &>/dev/null; then
@@ -94,8 +102,11 @@ else
   echo "⚠️ MeetingBar not found; try running 'brew install meetingbar' manually."
 fi
 
+echo ""
 echo "✨ All done!"
 echo "🔄 Restart your terminal or run 'exec zsh' to apply changes."
 echo ""
-echo "After restarting, run: p10k configure"
-echo "This will launch the Powerlevel10k configuration wizard."
+echo "📝 Next steps:"
+echo "  1. Run: exec zsh"
+echo "  2. Run: p10k configure"
+echo "     (Follow the wizard to customize your prompt colors and style)"
